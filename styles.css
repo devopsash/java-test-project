@@ -293,7 +293,22 @@ nav a.active {
     }
 
     nav {
-        display: none;
+        /* Un-hide navigation for mobile */
+        display: flex;
+        overflow-x: auto;
+        padding-bottom: 0.5rem;
+        width: 100%;
+        margin-top: 1rem;
+        gap: 1rem;
+        white-space: nowrap;
+    }
+
+    nav a {
+        margin-left: 0;
+        padding: 0.5rem 1rem;
+        background: rgba(255, 255, 255, 0.05);
+        border-radius: 20px;
+        font-size: 0.9rem;
     }
 
     /* Simplified for basic mobile */
