@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Nexus Network Topology</title>
+    <link rel="stylesheet" href="styles.css" />
+    <style>
+        /* Specific styles for network page */
+        .topology-container {
+            position: relative;
+            height: 60vh;
+            border-radius: 16px;
+            overflow: hidden;
+            margin-bottom: 2rem;
+            border: 1px solid var(--glass-border);
+        }
+
+        .topology-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .node-status {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .node-status:last-child {
+            border-bottom: none;
+        }
+    </style>
+</head>
+
+<body>
+    <header class="glass">
+        <a href="index.html" class="logo-container">
+            <img src="assets/logo.png" alt="Nexus Logo" class="logo-img" />
+            <span>NEXUS OPS</span>
+        </a>
+        <nav>
+            <a href="index.html">Dashboard</a>
+            <a href="network.html" class="active">Network Map</a>
+            <a href="procedures.html">Procedures</a>
+            <a href="ssl.html">SSL Tool</a>
+            <a href="login.html" class="btn btn-outline" style="margin-left: 2rem; padding: 0.5rem 1rem;">Admin
+                Login</a>
+        </nav>
+    </header>
+
+    <div class="dashboard" style="margin-top: 4rem;">
+        <h2 class="section-title">Global Topology</h2>
+
+        <div class="topology-container glass">
+            <img src="assets/network_topology.jpg" alt="Network Map" class="topology-img" />
+
+            <!-- Overlay HUD Interface (Simulated) -->
+            <div
+                style="position: absolute; top: 20px; right: 20px; background: rgba(0,0,0,0.6); padding: 1rem; border-radius: 8px; border: 1px solid var(--accent-cyan);">
+                <div style="font-size: 0.8rem; color: var(--accent-cyan); margin-bottom: 0.5rem;">LIVE TRAFFIC</div>
+                <div style="font-size: 1.5rem; font-weight: bold;">42.8 Tbps</div>
+            </div>
+        </div>
+
+        <div class="grid" style="grid-template-columns: 2fr 1fr;">
+            <div class="glass glass-card">
+                <h3 style="margin-bottom: 1.5rem;">Regional Nodes</h3>
+                <div class="node-status">
+                    <div><span class="status-indicator status-good"></span> <strong>US-East (Primary)</strong></div>
+                    <span style="color: var(--text-secondary);">Latency: 2ms</span>
+                </div>
+                <div class="node-status">
+                    <div><span class="status-indicator status-good"></span> <strong>EU-West (Mirror)</strong></div>
+                    <span style="color: var(--text-secondary);">Latency: 84ms</span>
+                </div>
+                <div class="node-status">
+                    <div><span class="status-indicator status-warn"></span> <strong>AP-South (Cache)</strong></div>
+                    <span style="color: var(--status-warning);">Latency: 142ms (High Load)</span>
+                </div>
+                <div class="node-status">
+                    <div><span class="status-indicator status-good"></span> <strong>Cloud Uplink</strong></div>
+                    <span style="color: var(--text-secondary);">Stable</span>
+                </div>
+            </div>
+
+            <div class="glass glass-card">
+                <h3 style="margin-bottom: 1.5rem;">Alerts</h3>
+                <div
+                    style="font-size: 0.9rem; margin-bottom: 1rem; padding: 1rem; background: rgba(239, 68, 68, 0.1); border-left: 3px solid var(--status-danger); border-radius: 4px;">
+                    <strong>Packet Loss Detected</strong><br>
+                    <span style="color: var(--text-secondary);">AP-South Node - 15 mins ago</span>
+                </div>
+                <div
+                    style="font-size: 0.9rem; padding: 1rem; background: rgba(16, 185, 129, 0.1); border-left: 3px solid var(--status-good); border-radius: 4px;">
+                    <strong>Maintenance Coming</strong><br>
+                    <span style="color: var(--text-secondary);">Scheduled for 03:00 UTC</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
