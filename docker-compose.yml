@@ -1,0 +1,48 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgres:15-alpine
+    restart: always
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: securepassword
+      POSTGRES_DB: nexus_ops
+    volumes:
+      - db_data:/var/lib/postgresql/data
+      - ./database/init.sql:/docker-entrypoint-initdb.d/init.sql
+    networks:
+      - nexus-net
+
+  backend:
+    build: ./backend
+    restart: always
+    environment:
+      DB_HOST: db
+      DB_USER: admin
+      DB_PASSWORD: securepassword
+      DB_NAME: nexus_ops
+      JWT_SECRET: supersecretkey
+      PORT: 3000
+    depends_on:
+      - db
+    networks:
+      - nexus-net
+
+  frontend:
+    build: .
+    restart: always
+    ports:
+      - "8080:80"
+    depends_on:
+      - backend
+    networks:
+      - nexus-net
+
+volumes:
+  db_data:
+
+
+networks:
+  nexus-net:
+    driver: bridge
